@@ -1,11 +1,15 @@
-// Core packages
-const http = require('http');
-
 // 3rd party packages
 const express = require('express');
 
 const app = express();
 
-const server = http.createServer(app);
+app.use((req, res, next) => {
+    console.log('In the middleware')
+    next();
+});
 
-server.listen(3000);
+app.use((req, res, next) => {
+    res.send('<h1>Moro!</h1>');
+});
+
+app.listen(3000);
